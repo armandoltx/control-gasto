@@ -10,6 +10,12 @@ function App() {
   // se declara en el componente principal para q todos lo puedan usar.
   const [presupuesto, setPresupuesto] = useState(0);
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false);
+  const [modal, setModal] = useState(false);
+
+  const handleNuevoGasto = () => {
+    // console.log("nuevo gasto");
+    setModal(true);
+  }
 
   return (
     <div>
@@ -25,9 +31,14 @@ function App() {
           <img
             src={IconoNuevoGasto}
             alt="icono nuevo gasto"
+            onClick={handleNuevoGasto}
           />
         </div>
       )}
+
+      {modal && <p>Desde Modal</p>}
+
+
     </div>
   )
 }
