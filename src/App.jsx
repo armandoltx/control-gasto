@@ -31,7 +31,7 @@ function App() {
     // console.log(generarId());
     gasto.id = generarId();
     // console.log(`gasto.id => ${gasto.id}`);
-    gasto.fecha = Dane.now();
+    gasto.fecha = Date.now();
     setGastos([...gastos, gasto ])
 
     setAnimarModal(false)
