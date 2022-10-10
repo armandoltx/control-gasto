@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
 import Header from './components/Header'
-import Modal from './components/Modal';
+import Modal from './components/Modal'
+import { generarId } from './helpers'
 import IconoNuevoGasto from './img/nuevo-gasto.svg'
 
 
@@ -25,6 +26,15 @@ function App() {
 
   const guardarGasto = (gasto) => {
     console.log(gasto);
+    console.log(generarId());
+    gasto.id = generarId();
+    console.log(`gasto.id => ${gasto.id}`);
+    setGastos([...gastos, gasto ])
+
+    setAnimarModal(false)
+    setTimeout(() => {
+      setModal(false);
+    }, 300)
   }
 
   return (

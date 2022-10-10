@@ -7,6 +7,8 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
   const [nombre, setNombre] = useState('')
   const [cantidad, setCantidad] = useState('')
   const [categoria, setCategoria] = useState('')
+  const [fecha, setFecha] = useState('')
+  const [id, setId] = useState('')
 
 
   const ocultarModal = () => {
@@ -19,7 +21,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('enviando formulario');
+    // console.log('enviando formulario');
     if([ nombre, cantidad, categoria ].includes('')) {
       // console.log('Validnado campos vacios');
       setMensaje('Todos los campos son obligatorios.');
@@ -29,7 +31,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
       return;
     }
 
-    guardarGasto([nombre, cantidad, categoria]);
+    guardarGasto({nombre, cantidad, categoria, id});
   }
 
   return (
