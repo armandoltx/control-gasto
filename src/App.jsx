@@ -27,10 +27,11 @@ function App() {
   }
 
   const guardarGasto = (gasto) => {
-    console.log(gasto);
-    console.log(generarId());
+    // console.log(gasto);
+    // console.log(generarId());
     gasto.id = generarId();
-    console.log(`gasto.id => ${gasto.id}`);
+    // console.log(`gasto.id => ${gasto.id}`);
+    gasto.fecha = Dane.now();
     setGastos([...gastos, gasto ])
 
     setAnimarModal(false)
