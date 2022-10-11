@@ -70,7 +70,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
             name=""
             id="cantidad"
             value={cantidad}
-            onChange={ e => setCantidad(e.target.value) }
+            onChange={ e => setCantidad(Number(e.target.value)) }
           />
         </div>
 
