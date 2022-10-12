@@ -41,7 +41,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto, gastoEditar
       return;
     }
 
-    guardarGasto({nombre, cantidad, categoria, id});
+    guardarGasto({nombre, cantidad, categoria, id, fecha});
   }
 
   return (
@@ -57,7 +57,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto, gastoEditar
         className={`formulario ${animarModal ? "animar" : 'cerrar'}`}
         onSubmit={handleSubmit}
       >
-        <legend>Nuevo Gasto</legend>
+        <legend>{gastoEditar.nombre ? 'Editar Gasto' : 'Nuevo Gasto'}</legend>
         {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
 
         <div className="campo">
@@ -102,7 +102,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto, gastoEditar
         </div>
         <input
           type="submit"
-          value="Agregar Gasto"
+          value={gastoEditar.nombre ? 'Guardar Cambios' : "Agregar Gasto"}
         />
       </form>
     </div>
