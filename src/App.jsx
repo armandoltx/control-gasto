@@ -59,6 +59,14 @@ function App() {
     }, 300)
   }
 
+  const eliminarGasto = id => {
+    const gastosActualizados = gastos.filter(gasto => gasto.id !== id)
+    // filter nos trae todos los q no tengan esa id
+    // console.log("gastosActualizados en eliminar gasto ", gastosActualizados);
+    setGastos(gastosActualizados);
+
+  }
+
   return (
     <div className={modal ? 'fijar' : ''}>
       <Header
@@ -75,6 +83,7 @@ function App() {
             <ListadoGastos
               gastos={gastos}
               setGastoEditar={setGastoEditar}
+              eliminarGasto={eliminarGasto}
             />
           </main>
           <div className="nuevo-gasto">
