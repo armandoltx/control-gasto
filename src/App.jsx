@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 
 import Header from './components/Header'
 import Modal from './components/Modal'
@@ -12,7 +12,7 @@ function App() {
 
   // como el presupuesto aunque se defina en el componente nuevoPresupuesto, se va a usar en otros componentes,
   // se declara en el componente principal para q todos lo puedan usar.
-  const [presupuesto, setPresupuesto] = useState(0);
+  const [presupuesto, setPresupuesto] = useState( Number(localStorage.getItem('presupuesto')) ?? 0 );
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false);
   const [modal, setModal] = useState(false);
   const [animarModal, setAnimarModal] = useState(false)
@@ -29,6 +29,10 @@ function App() {
     }
   },[gastoEditar])
 
+  useEffect(() => {
+    localStorage.setItem('presupuesto', presupuesto ?? 0)
+  },[presupuesto])
+
   const handleNuevoGasto = () => {
     // console.log("nuevo gasto");
     setModal(true);
@@ -37,6 +41,12 @@ function App() {
       setAnimarModal(true)
     }, 300)
   }
+
+  useEffect(() => {
+    const presupuestoLS = Number(localStorage.getItem('presupuesto')) ?? 0;
+
+    if(presupuestoLS > 0) setIsValidPresupuesto(true)
+  },[])
 
   const guardarGasto = (gasto) => {
     // console.log(gasto);
