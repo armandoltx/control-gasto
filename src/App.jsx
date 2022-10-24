@@ -1,6 +1,7 @@
 import { useState, useEffect, useLayoutEffect } from 'react'
 
 import Header from './components/Header'
+import Filtros from './components/Filtros'
 import Modal from './components/Modal'
 import ListadoGastos from './components/ListadoGastos';
 
@@ -20,6 +21,7 @@ function App() {
     localStorage.getItem('gastos') ? JSON.parse(localStorage.getItem('gastos')) : []
     )
   const [gastoEditar, setGastoEditar] = useState({})
+  const [filtro, setFiltro] = useState('')
 
   useEffect(() => {
     if(Object.keys(gastoEditar).length > 0) {
@@ -40,6 +42,12 @@ function App() {
   useEffect(() => {
     localStorage.setItem('presupuesto', presupuesto ?? 0)
   },[presupuesto])
+
+  useEffect(() => {
+    if(filtro) {
+      console.log("filtrando...");
+    }
+  },[filtro])
 
   useEffect(() => {
     localStorage.setItem('gastos', JSON.stringify(gastos) ?? [])
@@ -97,6 +105,10 @@ function App() {
       {isValidPresupuesto && (
         <>
           <main>
+            <Filtros
+            filtro={filtro}
+            setFiltro={setFiltro}
+            />
             <ListadoGastos
               gastos={gastos}
               setGastoEditar={setGastoEditar}
